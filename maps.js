@@ -4,6 +4,7 @@
 let toggle = 'hidden';
 let map = document.querySelector('#map');
 
+
 $('.backdrop').on('click', function () {
     backdrop.style.display = 'none';
     modal1.style.display = 'none';
@@ -30,12 +31,10 @@ $('.submit-button').click((event) => {
     } else if (windowWidth <= 1024 && windowWidth >= 768) {
         $('#map').offset({ top: mapEdge.top + 25, left: mapEdge.left + 25});
     } else if (windowWidth <= 768) {
-        $('#map').css('width',  '350px');
-        $('#map').css('height', '350px');
+        $('#map').css('width',  '350');
+        $('#map').css('height', '350');
         $('#map').offset({ bottom: mobileMapEdge.top + 100, left: mobileMapEdge.left - 125});
     }
-
-
     // const mapEdge = $('.circle').offset()
     // $('#map').offset({ top: mapEdge.top+50, left: mapEdge.left+50 });
 })
@@ -45,7 +44,6 @@ $(window).resize(function () {
     $('#map').offset({ top: mapEdge.top+50, left: mapEdge.left+50 });
 });
 
-
 farmInfo.forEach(element => {
     let mapURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${element.farmName}&key=${apiKey}`
     // console.log(element)
@@ -54,10 +52,14 @@ farmInfo.forEach(element => {
         let latLong = info.results[0].geometry.location
         element.address = address
         element.latLong = latLong
-        
     })
-
 })
+// let apiPromise = new Promise((resolve, reject)=>{
+//     resolve(element.latLong)
+// })
+// apiPromise.then((theDataFromResolve)=>{
+//     console.log ('promise worked!')
+// })
 let windowArr = []
 function closeOpenWindows(){
     windowArr.forEach(element=>{
@@ -67,7 +69,6 @@ function closeOpenWindows(){
 
 function initMap() {
     var gaMiddle = {lat: 32.838131, lng: -83.634705}
-    // const gaMiddle = google.maps.LatLng(32.838131, -83.634705)
     var map = new google.maps.Map(document.getElementById('map'), {zoom: 7, center: gaMiddle})
     map.setMapTypeId(`terrain`)
     farmInfo.forEach(element => {
