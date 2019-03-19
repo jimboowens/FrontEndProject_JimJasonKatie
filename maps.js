@@ -45,22 +45,21 @@ $(window).resize(function () {
 });
 
 farmInfo.forEach(element => {
-    let apiPromise = new Promise((resolve, reject)=>{
-        let mapURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${element.farmName}&key=${apiKey}`
-        // console.log(element)
-        $.getJSON(mapURL, (info)=>{
-            let address = info.results[0].formatted_address
-            let latLong = info.results[0].geometry.location
-            element.address = address
-            element.latLong = latLong
-        })
-        resolve(element.latLong)
-    })
-    apiPromise.then((theDataFromResolve)=>{
-        console.log ('promise worked!')
+    let mapURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${element.farmName}&key=${apiKey}`
+    // console.log(element)
+    $.getJSON(mapURL, (info)=>{
+        let address = info.results[0].formatted_address
+        let latLong = info.results[0].geometry.location
+        element.address = address
+        element.latLong = latLong
     })
 })
-
+// let apiPromise = new Promise((resolve, reject)=>{
+//     resolve(element.latLong)
+// })
+// apiPromise.then((theDataFromResolve)=>{
+//     console.log ('promise worked!')
+// })
 let windowArr = []
 function closeOpenWindows(){
     windowArr.forEach(element=>{
