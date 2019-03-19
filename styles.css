@@ -816,8 +816,7 @@ a:active {
     }
     
     .nav {
-        margin: 0 auto;
-       
+        margin: 0 auto;  
     }
     
     .button-wrapper {
@@ -851,7 +850,7 @@ a:active {
         justify-content: center;
         align-items: center;
         margin: 2rem auto;
-}
+    }
     
     .submit-button{
         border: none;
